@@ -7,7 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="RestSharp" Version="109.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Backend.Application\Backend.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AWSSQS">
+      <HintPath>..\Scripts\AWSSQS.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

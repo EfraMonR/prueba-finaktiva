@@ -1,0 +1,22 @@
+2024-07-18 00:14:34.208 -05:00 [INF] Now listening on: http://localhost:5023
+2024-07-18 00:14:34.307 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-07-18 00:14:34.308 -05:00 [INF] Hosting environment: Development
+2024-07-18 00:14:34.308 -05:00 [INF] Content root path: C:\Desarrollo\prueba-finaktiva\BackendFinaktiva\Backend.API\
+2024-07-18 00:15:59.204 -05:00 [INF] Now listening on: http://localhost:5023
+2024-07-18 00:15:59.292 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-07-18 00:15:59.293 -05:00 [INF] Hosting environment: Development
+2024-07-18 00:15:59.294 -05:00 [INF] Content root path: C:\Desarrollo\prueba-finaktiva\BackendFinaktiva\Backend.API\
+2024-07-18 00:16:33.383 -05:00 [INF] Now listening on: http://localhost:5023
+2024-07-18 00:16:33.481 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-07-18 00:16:33.482 -05:00 [INF] Hosting environment: Development
+2024-07-18 00:16:33.482 -05:00 [INF] Content root path: C:\Desarrollo\prueba-finaktiva\BackendFinaktiva\Backend.API\
+2024-07-18 00:17:11.783 -05:00 [INF] Now listening on: http://localhost:5023
+2024-07-18 00:17:11.880 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-07-18 00:17:11.881 -05:00 [INF] Hosting environment: Development
+2024-07-18 00:17:11.881 -05:00 [INF] Content root path: C:\Desarrollo\prueba-finaktiva\BackendFinaktiva\Backend.API\
+2024-07-18 00:17:19.140 -05:00 [WRN] Failed to determine the https port for redirect.
+2024-07-18 00:17:19.221 -05:00 [INF] HTTP GET /api/EventLog/GetEventsLog responded 200 in 75.8186 ms
+2024-07-18 00:19:48.538 -05:00 [INF] Now listening on: http://localhost:5023
+2024-07-18 00:19:48.627 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-07-18 00:19:48.628 -05:00 [INF] Hosting environment: Development
+2024-07-18 00:19:48.628 -05:00 [INF] Content root path: C:\Desarrollo\prueba-finaktiva\BackendFinaktiva\Backend.API\

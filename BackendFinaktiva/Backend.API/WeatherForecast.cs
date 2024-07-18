@@ -1,4 +1,4 @@
-namespace BackendFinaktiva
+namespace Backend.API
 {
     public class WeatherForecast
     {
