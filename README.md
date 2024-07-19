@@ -72,3 +72,5 @@ Para el proyecto FrontendFinaktiva tener instalado lo siguiente:
 ![postman](assets/postman.png)
 
 Es de suma importancia enviar el tipoEvento como 1, dado que es la forma en que identificamos que fue ejecutada directamente desde el api, sin pasar por el front.
+
+3. Se realizó manejo de ramas, desarrollo en develop, pruebas en release y producto final en master.
