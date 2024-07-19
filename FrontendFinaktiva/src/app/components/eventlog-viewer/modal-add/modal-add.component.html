@@ -1,0 +1,35 @@
+<div class="modal fade" id="modalAgregate" tabindex="-1" aria-labelledby="modalAgregateLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalAgregateLabel">Agregar Evento Manualmente</h5>
+        <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Mensajes de éxito y error -->
+        <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ successMessage }}
+          <button type="button" class="btn-close" aria-label="Close" (click)="clearAlert('success')"></button>
+        </div>
+        <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{ errorMessage }}
+          <button type="button" class="btn-close" aria-label="Close" (click)="clearAlert('error')"></button>
+        </div>
+
+        <form (ngSubmit)="onSubmit()" #eventForm="ngForm">
+          <div class="mb-3">
+            <label for="eventDescription" class="form-label">Descripción Evento</label>
+            <input type="text" id="eventDescription" class="form-control" [(ngModel)]="newEvent.descripcion" name="descripcion" required>
+            <div *ngIf="descriptionError" class="text-danger">
+              Debe diligenciarse una descripción
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Agregar</button>
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

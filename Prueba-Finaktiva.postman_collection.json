@@ -1,0 +1,61 @@
+{
+	"info": {
+		"_postman_id": "37a84529-d8a4-4b3f-bcc4-74909154e82e",
+		"name": "Prueba-Finaktiva",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17369660"
+	},
+	"item": [
+		{
+			"name": "GetEventsLogList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5023/api/EventLog/GetEventsLogList",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5023",
+					"path": [
+						"api",
+						"EventLog",
+						"GetEventsLogList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateEventLog",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"descripcion\": \"Prueba de registro manual de evento\",\r\n  \"tipoEvento\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5023/api/EventLog/CreateEventLog",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5023",
+					"path": [
+						"api",
+						"EventLog",
+						"CreateEventLog"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
