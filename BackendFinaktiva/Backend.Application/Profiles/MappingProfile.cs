@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using Backend.Application.Features.QueryEventLog.Queries.GetEventLogsList;
+using Backend.Domain.Entities;
+
 //using Backend.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,7 +15,7 @@ namespace Backend.Application.Profiles
     {
         public MappingProfile()
         {
-
+            CreateMap<EventLogs, ResponseGetEventLogsListQueryVm>().ReverseMap();
         }
     }
 }

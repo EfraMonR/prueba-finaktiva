@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Backend.Application.Exceptions;
-using Backend.Application.Features.QueryRemainder.Queries.GetRemainder;
+using Backend.Application.Features.QueryEventLog.Queries.GetEventLogsList;
+using Backend.Application.Features.CommandEventLog.Commands.CreateEventLog;
 
 namespace Backend.API.Controllers
 {
@@ -16,13 +17,13 @@ namespace Backend.API.Controllers
             _mediator = mediator;
         }
 
-        [Route("GetEventsLog")]
+        [Route("GetEventsLogList")]
         [HttpGet]
-        public async Task<ActionResult<ResponseGetEventLogsVm>> GetRemainders()
+        public async Task<ActionResult<ResponseGetEventLogsListQueryVm>> GetRemainders()
         {
             try
             {
-                var response = await _mediator.Send(new GetEventLogsQuery());
+                var response = await _mediator.Send(new GetEventLogsListQuery());
                 return Ok(response);
             }
             catch (Exception ex)
@@ -31,5 +32,22 @@ namespace Backend.API.Controllers
             }
 
         }
+
+        [Route("CreateEventLog")]
+        [HttpPost]
+        public async Task<ActionResult<ResponseCreateEventLogCommandVm>> CreateEventLog([FromBody] CreateEventLogCommand request)
+        {
+            try
+            {
+                var response = await _mediator.Send(request);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
     }
 }

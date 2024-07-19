@@ -27,7 +27,7 @@ namespace Backend.API
             });
 
             builder.Services.AddDbContext<ConnectionDBContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnectionPruebas")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnectionPrueba")));
             //builder.Services.AddTransient(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
 
             return builder.Build();
