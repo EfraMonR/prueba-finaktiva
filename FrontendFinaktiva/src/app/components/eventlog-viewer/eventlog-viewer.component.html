@@ -1,8 +1,16 @@
-<div class="eventlog-viewer">
-  <h1>Visualizador de eventos Finaktiva</h1>
-  <button class="btn btn-primary" (click)="openConsultModal()">Consulta</button>
-  <button class="btn btn-secondary" (click)="openAddModal()">Agregar</button>
+<div class="container mt-4">
+  <div class="eventlog-viewer p-4 bg-light rounded shadow-sm mx-auto">
+    <h1 class="text-center mb-4">Visualizador de eventos Finaktiva</h1>
+    <div class="d-flex justify-content-center">
+      <button class="btn btn-primary me-2" (click)="openConsultModal()">Consulta</button>
+      <button class="btn btn-primary me-2" (click)="openAddModal()">Agregar</button>
+    </div>
+  </div>
 </div>
+
 
 <!-- Modal Consult -->
 <app-modal-consult></app-modal-consult>
+
+<!-- Modal Add -->
+<app-modal-add></app-modal-add>

@@ -14,8 +14,11 @@ export class EventlogViewerComponent {
     };
   }
 
-    openAddModal() {
-    console.log('Agregar button clicked');
-    // Implementa aquí la lógica para el botón Agregar
+  openAddModal() {
+    const modalElement = document.getElementById('modalAgregate');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
+    };
   }
 }
