@@ -1,0 +1,5 @@
+# Archivo .gitignore global
+
+# Incluir archivos .gitignore de subproyectos
+include BackendFinaktiva/.gitignore
+include FrontendFinaktiva/.gitignore
