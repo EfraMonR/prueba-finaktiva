@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-//using Backend.Application.Models;
 using System.Globalization;
 using Backend.Application.Exceptions;
 using Backend.Application.Features.QueryEventLog.Queries.GetEventLogsList;
@@ -21,15 +20,20 @@ namespace Backend.Infraestructure.API
 {
     public class ServiceEventLog<T> : IServiceEventLog<T> where T : class
     {
+        #region Variables Globales
         private readonly IMapper _mapper;
         private IAsyncRepository<EventLogs> _eventLogsRepository;
+        #endregion
 
+        #region Constructor
         public ServiceEventLog(IMapper mapper, IAsyncRepository<EventLogs> eventLogsRepository)
         {
             _mapper = mapper;
             _eventLogsRepository = eventLogsRepository;
         }
+        #endregion
 
+        #region Metodos Publicos
         public async Task<List<ResponseGetEventLogsListQueryVm>> GetEventLogsList()
         { 
             var eventLogsList = await _eventLogsRepository.ListAllAsync();
@@ -66,7 +70,9 @@ namespace Backend.Infraestructure.API
             }
             return response;
         }
+        #endregion
 
+        #region Metodos Privados
         private ResponseCreateEventLogCommandVm ValidateEventLogFields(CreateEventLogCommand request)
         {
             var response = new ResponseCreateEventLogCommandVm();
@@ -82,6 +88,7 @@ namespace Backend.Infraestructure.API
             response.Message = "Validation successful.";
             return response;
         }
+        #endregion
     }
 
 }
