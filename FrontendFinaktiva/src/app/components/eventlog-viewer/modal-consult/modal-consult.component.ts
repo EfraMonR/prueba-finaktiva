@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { EventlogViewerService } from './../eventlog-viewer.service';
 import { EventLog } from './../../../models/eventlog.model';
 
+declare var bootstrap: any;
+
 @Component({
   selector: 'app-modal-consult',
   templateUrl: './modal-consult.component.html',
@@ -13,6 +15,8 @@ export class ModalConsultComponent {
   eventTypeFilter: number | null = null;
   startDateFilter: Date | null = null;
   endDateFilter: Date | null = null;
+  today: Date = new Date();
+  errorMessage: string | null = null;
 
   constructor(private eventViewerService: EventlogViewerService) {
 
@@ -25,13 +29,38 @@ export class ModalConsultComponent {
   ngAfterViewInit(): void {
     const modalElement = document.getElementById('modalConsult');
     if (modalElement) {
+      const bootstrapModal = new bootstrap.Modal(modalElement);
       modalElement.addEventListener('hidden.bs.modal', () => this.resetFilters());
+      modalElement.addEventListener('shown.bs.modal', () => {
+        this.setDefaultDates();
+        this.resetEventTypeFilter();
+      });
     }
   }
 
-  getEventLogs(){
-    this.eventViewerService.getAllEventLog()
-      .subscribe(eventLog => this.eventLogs = eventLog)
+  getEventLogs(): void {
+    this.eventViewerService.getAllEventLog().subscribe(eventLog => {
+      this.eventLogs = eventLog;
+      this.applyFilter(); // Aplica el filtro al cargar los eventos
+    });
+  }
+
+  setDefaultDates(): void {
+    const today = new Date();
+    this.startDateFilter = new Date(today);
+    this.endDateFilter = new Date(today);
+
+    const startDateInput = document.getElementById('startDateInput') as HTMLInputElement;
+    const endDateInput = document.getElementById('endDateInput') as HTMLInputElement;
+    if (startDateInput) startDateInput.value = this.formatDate(today);
+    if (endDateInput) endDateInput.value = this.formatDate(today);
+  }
+
+  formatDate(date: Date): string {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
   }
 
   getEventTypeDescription(eventType: number): string {
@@ -58,19 +87,46 @@ export class ModalConsultComponent {
       return isDateInRange && isTypeMatch;
     });
   }
+
   onEventTypeChange(event: Event): void {
     const target = event.target as HTMLSelectElement;
-    this.eventTypeFilter = +target.value;
+    this.eventTypeFilter = target.value ? +target.value : null;
   }
 
   onStartDateChange(event: Event): void {
     const target = event.target as HTMLInputElement;
-    this.startDateFilter = target.value ? new Date(target.value) : null;
+    const selectedDate = target.value ? new Date(target.value) : null;
+
+    if (selectedDate && selectedDate > this.today) {
+      this.errorMessage = 'La fecha de inicio no puede ser superior a la fecha actual.';
+      this.startDateFilter = null;
+      target.value = '';
+    } else {
+      this.errorMessage = null;
+      this.startDateFilter = selectedDate;
+      this.applyFilter();
+    }
   }
 
   onEndDateChange(event: Event): void {
     const target = event.target as HTMLInputElement;
-    this.endDateFilter = target.value ? new Date(target.value) : null;
+    const selectedDate = target.value ? new Date(target.value) : null;
+
+    if (selectedDate && selectedDate > this.today) {
+      this.errorMessage = 'La fecha de fin no puede ser superior a la fecha actual.';
+      this.endDateFilter = null;
+      this.filteredEvents = []
+      target.value = '';
+    } else if (this.startDateFilter && selectedDate && selectedDate < this.startDateFilter) {
+      this.errorMessage = 'La fecha de fin no puede ser anterior a la fecha de inicio.';
+      this.endDateFilter = null;
+      this.filteredEvents = []
+      target.value = '';
+    } else {
+      this.errorMessage = null;
+      this.endDateFilter = selectedDate;
+      this.applyFilter();
+    }
   }
 
   applyFilter(): void {
@@ -82,5 +138,11 @@ export class ModalConsultComponent {
     this.startDateFilter = null;
     this.endDateFilter = null;
     this.filteredEvents = [];
+    this.errorMessage = null;
+  }
+
+  resetEventTypeFilter(): void {
+    const eventTypeSelect = document.getElementById('eventType') as HTMLSelectElement;
+    if (eventTypeSelect) eventTypeSelect.value = ''; // Restablece a "Todos"
   }
 }

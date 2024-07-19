@@ -6,6 +6,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <div *ngIf="errorMessage" class="alert alert-danger">
+          {{ errorMessage }}
+        </div>
+
         <div class="mb-3">
           <label for="eventType" class="form-label">Seleccionar tipo</label>
           <select id="eventType" class="form-select" (change)="onEventTypeChange($event)">
@@ -17,8 +21,8 @@
 
         <div class="mb-3">
           <label class="form-label">Rango de fechas</label>
-          <input type="date" class="form-control mb-2" placeholder="Fecha de inicio" (change)="onStartDateChange($event)">
-          <input type="date" class="form-control" placeholder="Fecha de fin" (change)="onEndDateChange($event)">
+          <input id="startDateInput" type="date" class="form-control mb-2" placeholder="Fecha de inicio" (change)="onStartDateChange($event)">
+          <input id="endDateInput" type="date" class="form-control" placeholder="Fecha de fin" (change)="onEndDateChange($event)">
         </div>
 
         <!-- Tabla de eventos -->
@@ -34,7 +38,7 @@
           <tbody>
             <tr *ngFor="let event of filteredEvents">
               <td>{{ event.id }}</td>
-              <td>{{ event.fecha }}</td>
+              <td>{{ event.fecha | date:'shortDate' }}</td>
               <td>{{ event.descripcion }}</td>
               <td>{{ getEventTypeDescription(event.tipoEvento) }}</td>
             </tr>
